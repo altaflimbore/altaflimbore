@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aurora Bank • Card & UPI Payments</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="icon" href="assets/img/cards.svg" />
+  <meta name="color-scheme" content="light dark" />
+  <script type="module" src="assets/js/utils.js" defer></script>
+  <script type="module" src="assets/js/cards.js" defer></script>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="assets/img/bank.svg" alt="Aurora" width="28" height="28" />
+        <strong>Aurora Bank</strong>
+      </div>
+      <nav class="nav">
+        <a href="dashboard.html"><img src="assets/img/dashboard.svg" alt=""/>Dashboard</a>
+        <a href="bills.html"><img src="assets/img/bills.svg" alt=""/>Bills</a>
+        <a href="loans.html"><img src="assets/img/loans.svg" alt=""/>Loans</a>
+        <a href="transactions.html"><img src="assets/img/transactions.svg" alt=""/>Transactions</a>
+        <a class="active" href="cards.html"><img src="assets/img/cards.svg" alt=""/>Cards</a>
+        <a href="#" id="logoutLink"><img src="assets/img/logout.svg" alt=""/>Logout</a>
+      </nav>
+    </aside>
+    <main class="content">
+      <div class="topbar">
+        <h2>Payments</h2>
+        <div class="actions">
+          <button id="themeToggle" class="icon-btn" title="Toggle theme">
+            <img src="assets/img/theme.svg" alt="theme" />
+          </button>
+        </div>
+      </div>
+
+      <section class="grid cols-2">
+        <div class="card">
+          <h3>Card Payment</h3>
+          <form id="cardForm" class="form">
+            <div class="form-field">
+              <label for="cardType">Card Type</label>
+              <select id="cardType" required>
+                <option value="">Select</option>
+                <option>Debit Card</option>
+                <option>Credit Card</option>
+                <option>Other Cards</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="cardNumber">Card Number</label>
+              <input id="cardNumber" inputmode="numeric" pattern="[0-9]{16}" maxlength="16" placeholder="1234123412341234" required />
+            </div>
+            <div class="form-field">
+              <label for="cardName">Name on Card</label>
+              <input id="cardName" placeholder="Jane Doe" required />
+            </div>
+            <div class="grid cols-2">
+              <div class="form-field">
+                <label for="expiry">Expiry (MM/YY)</label>
+                <input id="expiry" placeholder="08/28" required />
+              </div>
+              <div class="form-field">
+                <label for="cvv">CVV</label>
+                <input id="cvv" inputmode="numeric" pattern="[0-9]{3,4}" maxlength="4" placeholder="123" required />
+              </div>
+            </div>
+            <div class="form-field">
+              <label for="cardAmount">Amount</label>
+              <input id="cardAmount" type="number" min="1" step="0.01" required />
+            </div>
+            <div class="brands" style="display:flex; gap:.6rem; align-items:center; opacity:.8;">
+              <img src="assets/img/visa.svg" alt="Visa" width="36" />
+              <img src="assets/img/mastercard.svg" alt="Mastercard" width="36" />
+              <img src="assets/img/rupay.svg" alt="Rupay" width="36" />
+            </div>
+            <button class="btn btn-primary" type="submit">Pay with Card</button>
+          </form>
+        </div>
+
+        <div class="card">
+          <h3>UPI / Net Banking</h3>
+          <form id="upiForm" class="form">
+            <div class="form-field">
+              <label for="upiId">UPI ID</label>
+              <input id="upiId" placeholder="name@bank" />
+            </div>
+            <div class="form-field">
+              <label for="upiAmount">Amount</label>
+              <input id="upiAmount" type="number" min="1" step="0.01" />
+            </div>
+            <div class="brands" style="display:flex; gap:.6rem; align-items:center; opacity:.8;">
+              <img src="assets/img/upi.svg" alt="UPI" width="40" />
+              <img src="assets/img/netbanking.svg" alt="Net Banking" width="40" />
+            </div>
+            <div style="display:flex; gap:.6rem;">
+              <button class="btn btn-primary" id="upiPay" type="button">Pay via UPI</button>
+              <button class="btn btn-surface" id="netBankingPay" type="button">Pay via Net Banking</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module">
+    import { guardAuth, initializeTheme, attachLogout } from './assets/js/utils.js';
+    guardAuth();
+    initializeTheme();
+    attachLogout();
+  </script>
+</body>
+</html>
+
