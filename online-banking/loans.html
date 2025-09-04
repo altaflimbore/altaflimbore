@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aurora Bank • Loans & EMI</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="icon" href="assets/img/loans.svg" />
+  <meta name="color-scheme" content="light dark" />
+  <script type="module" src="assets/js/utils.js" defer></script>
+  <script type="module" src="assets/js/loans.js" defer></script>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="assets/img/bank.svg" alt="Aurora" width="28" height="28" />
+        <strong>Aurora Bank</strong>
+      </div>
+      <nav class="nav">
+        <a href="dashboard.html"><img src="assets/img/dashboard.svg" alt=""/>Dashboard</a>
+        <a href="bills.html"><img src="assets/img/bills.svg" alt=""/>Bills</a>
+        <a class="active" href="loans.html"><img src="assets/img/loans.svg" alt=""/>Loans</a>
+        <a href="transactions.html"><img src="assets/img/transactions.svg" alt=""/>Transactions</a>
+        <a href="cards.html"><img src="assets/img/cards.svg" alt=""/>Cards</a>
+        <a href="#" id="logoutLink"><img src="assets/img/logout.svg" alt=""/>Logout</a>
+      </nav>
+    </aside>
+    <main class="content">
+      <div class="topbar">
+        <h2>Loan & EMI Calculator</h2>
+        <div class="actions">
+          <button id="themeToggle" class="icon-btn" title="Toggle theme">
+            <img src="assets/img/theme.svg" alt="theme" />
+          </button>
+        </div>
+      </div>
+
+      <section class="grid cols-2">
+        <div class="card">
+          <h3>Apply for Loan</h3>
+          <form id="loanForm" class="form">
+            <div class="form-field">
+              <label for="principal">Principal (P)</label>
+              <input id="principal" type="number" min="1000" step="100" required />
+            </div>
+            <div class="grid cols-2">
+              <div class="form-field">
+                <label for="interest">Annual Interest %</label>
+                <input id="interest" type="number" min="1" step="0.1" required />
+              </div>
+              <div class="form-field">
+                <label for="tenure">Tenure (months)</label>
+                <input id="tenure" type="number" min="1" step="1" required />
+              </div>
+            </div>
+            <button class="btn btn-primary" type="submit">Calculate EMI</button>
+          </form>
+        </div>
+        <div class="card">
+          <h3>Monthly EMI</h3>
+          <div id="emiResult" class="metric">
+            <div class="icon"><img src="assets/img/loans.svg" alt="" width="28"></div>
+            <div>
+              <div class="label">Result</div>
+              <div class="value" id="emiValue">—</div>
+            </div>
+          </div>
+          <p class="hint">Formula: EMI = P × R × (1+R)^N / ((1+R)^N − 1)</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module">
+    import { guardAuth, initializeTheme, attachLogout } from './assets/js/utils.js';
+    guardAuth();
+    initializeTheme();
+    attachLogout();
+  </script>
+</body>
+</html>
+

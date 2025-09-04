@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aurora Bank • Admin Dashboard</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="icon" href="assets/img/admin.svg" />
+  <meta name="color-scheme" content="light dark" />
+  <script type="module" src="assets/js/utils.js" defer></script>
+  <script type="module" src="assets/js/admin.js" defer></script>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="assets/img/admin.svg" alt="Admin" width="28" height="28" />
+        <strong>Admin Console</strong>
+      </div>
+      <nav class="nav">
+        <a class="active" href="admin.html"><img src="assets/img/dashboard.svg" alt=""/>Overview</a>
+        <a href="#" id="logoutLink"><img src="assets/img/logout.svg" alt=""/>Logout</a>
+      </nav>
+    </aside>
+    <main class="content">
+      <div class="topbar">
+        <h2>Admin Dashboard</h2>
+        <div class="actions">
+          <button id="themeToggle" class="icon-btn" title="Toggle theme">
+            <img src="assets/img/theme.svg" alt="theme" />
+          </button>
+        </div>
+      </div>
+
+      <section class="grid cols-2">
+        <div class="card">
+          <h3>Pending Approvals</h3>
+          <table>
+            <thead>
+              <tr><th>Name</th><th>Email</th><th>Actions</th></tr>
+            </thead>
+            <tbody id="pendingTable"></tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>All Users</h3>
+          <table>
+            <thead>
+              <tr><th>Name</th><th>Email</th><th>Account</th><th>Balance</th><th>Status</th></tr>
+            </thead>
+            <tbody id="usersTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card" style="margin-top:1rem;">
+        <h3>Suspicious Transactions</h3>
+        <div class="hint">Auto-flagged if amount exceeds threshold or unusual patterns are detected.</div>
+        <table>
+          <thead>
+            <tr><th>User</th><th>Date</th><th>Type</th><th>Amount</th><th>Note</th></tr>
+          </thead>
+          <tbody id="suspiciousTable"></tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <script type="module">
+    import { guardAdmin, initializeTheme, attachLogout } from './assets/js/utils.js';
+    guardAdmin();
+    initializeTheme();
+    attachLogout();
+  </script>
+</body>
+</html>
+

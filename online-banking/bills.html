@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aurora Bank • Bills & Utilities</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="icon" href="assets/img/bills.svg" />
+  <meta name="color-scheme" content="light dark" />
+  <script type="module" src="assets/js/utils.js" defer></script>
+  <script type="module" src="assets/js/bills.js" defer></script>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="assets/img/bank.svg" alt="Aurora" width="28" height="28" />
+        <strong>Aurora Bank</strong>
+      </div>
+      <nav class="nav">
+        <a href="dashboard.html"><img src="assets/img/dashboard.svg" alt=""/>Dashboard</a>
+        <a class="active" href="bills.html"><img src="assets/img/bills.svg" alt=""/>Bills</a>
+        <a href="loans.html"><img src="assets/img/loans.svg" alt=""/>Loans</a>
+        <a href="transactions.html"><img src="assets/img/transactions.svg" alt=""/>Transactions</a>
+        <a href="cards.html"><img src="assets/img/cards.svg" alt=""/>Cards</a>
+        <a href="#" id="logoutLink"><img src="assets/img/logout.svg" alt=""/>Logout</a>
+      </nav>
+    </aside>
+    <main class="content">
+      <div class="topbar">
+        <h2>Bills & Utilities</h2>
+        <div class="actions">
+          <button id="themeToggle" class="icon-btn" title="Toggle theme">
+            <img src="assets/img/theme.svg" alt="theme" />
+          </button>
+        </div>
+      </div>
+
+      <section class="grid cols-4 grid-cards">
+        <div class="card bill-card" data-category="Electricity">
+          <div class="metric"><div class="icon"><img src="assets/img/electricity.svg" alt="" width="24" height="24"></div><div>
+            <div class="label">Electricity</div>
+          </div></div>
+        </div>
+        <div class="card bill-card" data-category="Water">
+          <div class="metric"><div class="icon"><img src="assets/img/water.svg" alt="" width="24" height="24"></div><div>
+            <div class="label">Water</div>
+          </div></div>
+        </div>
+        <div class="card bill-card" data-category="Internet">
+          <div class="metric"><div class="icon"><img src="assets/img/internet.svg" alt="" width="24" height="24"></div><div>
+            <div class="label">Internet</div>
+          </div></div>
+        </div>
+        <div class="card bill-card" data-category="DTH">
+          <div class="metric"><div class="icon"><img src="assets/img/dth.svg" alt="" width="24" height="24"></div><div>
+            <div class="label">DTH</div>
+          </div></div>
+        </div>
+      </section>
+
+      <section class="card" style="margin-top:1rem;">
+        <h3>Pay a Bill</h3>
+        <form id="billForm" class="form">
+          <div class="form-field">
+            <label for="billCategory">Category</label>
+            <select id="billCategory" required>
+              <option value="">Select category</option>
+              <option>Electricity</option>
+              <option>Water</option>
+              <option>Internet</option>
+              <option>DTH</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="billAmount">Amount</label>
+            <input id="billAmount" type="number" min="1" step="0.01" required />
+          </div>
+          <button class="btn btn-primary" type="submit">Pay Bill</button>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <script type="module">
+    import { guardAuth, initializeTheme, attachLogout } from './assets/js/utils.js';
+    guardAuth();
+    initializeTheme();
+    attachLogout();
+  </script>
+</body>
+</html>
+

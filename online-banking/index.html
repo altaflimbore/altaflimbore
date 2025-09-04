@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aurora Bank • Login</title>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="icon" href="assets/img/bank.svg" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="description" content="Modern online banking portal - Aurora Bank" />
+    <script type="module" src="assets/js/auth.js" defer></script>
+    <script type="module" src="assets/js/utils.js" defer></script>
+    <style>
+      /* Page-specific tweak to center card nicely before main CSS loads */
+      body { min-height: 100vh; display: grid; place-items: center; }
+    </style>
+  </head>
+  <body class="auth-body">
+    <main class="auth-container">
+      <section class="brand-pane">
+        <div class="brand-logo">
+          <img src="assets/img/bank.svg" alt="Aurora Bank" />
+          <h1>Aurora Bank</h1>
+        </div>
+        <p>Secure. Simple. Smart banking for everyone.</p>
+        <ul class="brand-highlights">
+          <li>Zero-fee transfers</li>
+          <li>Powerful insights</li>
+          <li>24×7 support</li>
+        </ul>
+      </section>
+
+      <section class="auth-card">
+        <h2>Welcome back</h2>
+        <form id="loginForm" class="form" autocomplete="on">
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required />
+          </div>
+          <div class="form-field">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" placeholder="••••••••" required />
+          </div>
+          <button type="submit" class="btn btn-primary w-full">Log In</button>
+        </form>
+        <div class="auth-links">
+          <a href="signup.html">Create account</a>
+          <a href="reset.html">Forgot password?</a>
+        </div>
+        <div class="divider"><span>or</span></div>
+        <a href="admin-login.html" class="btn btn-surface w-full">Admin Login</a>
+        <div class="theme-toggle-inline">
+          <button id="themeToggle" class="icon-btn" title="Toggle theme">
+            <img src="assets/img/theme.svg" alt="theme" />
+          </button>
+        </div>
+      </section>
+    </main>
+    <script type="module">
+      import { initializeTheme } from './assets/js/utils.js';
+      initializeTheme();
+    </script>
+  </body>
+  </html>
+

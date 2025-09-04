@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aurora Bank • Dashboard</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="icon" href="assets/img/bank.svg" />
+  <meta name="color-scheme" content="light dark" />
+  <script type="module" src="assets/js/utils.js" defer></script>
+  <script type="module" src="assets/js/dashboard.js" defer></script>
+</head>
+<body data-page="dashboard">
+  <div class="app">
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="assets/img/bank.svg" alt="Aurora" width="28" height="28" />
+        <strong>Aurora Bank</strong>
+      </div>
+      <nav class="nav">
+        <a class="active" href="dashboard.html"><img src="assets/img/dashboard.svg" alt=""/>Dashboard</a>
+        <a href="bills.html"><img src="assets/img/bills.svg" alt=""/>Bills</a>
+        <a href="loans.html"><img src="assets/img/loans.svg" alt=""/>Loans</a>
+        <a href="transactions.html"><img src="assets/img/transactions.svg" alt=""/>Transactions</a>
+        <a href="cards.html"><img src="assets/img/cards.svg" alt=""/>Cards</a>
+        <a href="#" id="logoutLink"><img src="assets/img/logout.svg" alt=""/>Logout</a>
+      </nav>
+    </aside>
+    <main class="content">
+      <div class="topbar">
+        <h2>Hello, <span id="userName">User</span></h2>
+        <div class="actions">
+          <button id="themeToggle" class="icon-btn" title="Toggle theme">
+            <img src="assets/img/theme.svg" alt="theme" />
+          </button>
+        </div>
+      </div>
+
+      <section class="grid cols-3">
+        <div class="card">
+          <div class="metric">
+            <div class="icon"><img src="assets/img/money.svg" alt="" width="24" height="24"></div>
+            <div>
+              <div class="label">Current Balance</div>
+              <div class="value" id="balanceValue">$0.00</div>
+            </div>
+          </div>
+          <div class="hint">Acct No: <span id="accountNumber">—</span></div>
+        </div>
+        <div class="card">
+          <h3>Quick Actions</h3>
+          <div class="grid cols-3">
+            <button class="btn btn-surface" id="openDeposit"><img src="assets/img/deposit.svg" alt="" width="18" height="18">Deposit</button>
+            <button class="btn btn-surface" id="openWithdraw"><img src="assets/img/withdraw.svg" alt="" width="18" height="18">Withdraw</button>
+            <button class="btn btn-surface" id="openTransfer"><img src="assets/img/transfer.svg" alt="" width="18" height="18">Transfer</button>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Cards & Bills</h3>
+          <div class="grid cols-2">
+            <a class="btn btn-outline" href="cards.html">Pay by Card</a>
+            <a class="btn btn-outline" href="bills.html">Pay Bills</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" style="margin-top:1rem;">
+        <h3>Recent Transactions</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Note</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody id="recentTransactions"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Deposit Modal -->
+  <div class="modal" id="depositModal" aria-hidden="true">
+    <div class="dialog">
+      <h3>Deposit</h3>
+      <form id="depositForm" class="form">
+        <div class="form-field">
+          <label for="depositAmount">Amount</label>
+          <input id="depositAmount" type="number" min="1" step="0.01" required />
+        </div>
+        <button class="btn btn-primary" type="submit">Confirm Deposit</button>
+        <button class="btn btn-surface" type="button" data-close>Cancel</button>
+      </form>
+    </div>
+  </div>
+  <!-- Withdraw Modal -->
+  <div class="modal" id="withdrawModal" aria-hidden="true">
+    <div class="dialog">
+      <h3>Withdraw</h3>
+      <form id="withdrawForm" class="form">
+        <div class="form-field">
+          <label for="withdrawAmount">Amount</label>
+          <input id="withdrawAmount" type="number" min="1" step="0.01" required />
+        </div>
+        <button class="btn btn-primary" type="submit">Confirm Withdrawal</button>
+        <button class="btn btn-surface" type="button" data-close>Cancel</button>
+      </form>
+    </div>
+  </div>
+  <!-- Transfer Modal -->
+  <div class="modal" id="transferModal" aria-hidden="true">
+    <div class="dialog">
+      <h3>Transfer</h3>
+      <form id="transferForm" class="form">
+        <div class="form-field">
+          <label for="receiverEmail">Receiver Email</label>
+          <input id="receiverEmail" type="email" placeholder="receiver@example.com" required />
+        </div>
+        <div class="form-field">
+          <label for="transferAmount">Amount</label>
+          <input id="transferAmount" type="number" min="1" step="0.01" required />
+        </div>
+        <button class="btn btn-primary" type="submit">Send Transfer</button>
+        <button class="btn btn-surface" type="button" data-close>Cancel</button>
+      </form>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeTheme, guardAuth, attachLogout } from './assets/js/utils.js';
+    guardAuth();
+    initializeTheme();
+    attachLogout();
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aurora Bank • Sign Up</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="icon" href="assets/img/bank.svg" />
+  <meta name="color-scheme" content="light dark" />
+  <script type="module" src="assets/js/auth.js" defer></script>
+  <script type="module" src="assets/js/utils.js" defer></script>
+</head>
+<body class="auth-body">
+  <main class="auth-container">
+    <section class="brand-pane small">
+      <div class="brand-logo">
+        <img src="assets/img/bank.svg" alt="Aurora Bank" />
+        <h1>Create your account</h1>
+      </div>
+      <p>Sign up to start your banking journey.</p>
+    </section>
+    <section class="auth-card">
+      <form id="signupForm" class="form">
+        <div class="form-field">
+          <label for="name">Full Name</label>
+          <input id="name" name="name" type="text" placeholder="Jane Doe" required />
+        </div>
+        <div class="form-field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required />
+        </div>
+        <div class="form-field">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" placeholder="••••••••" minlength="6" required />
+        </div>
+        <button type="submit" class="btn btn-primary w-full">Create account</button>
+        <p class="hint">New accounts require admin approval before first login.</p>
+      </form>
+      <div class="auth-links">
+        <a href="index.html">Back to login</a>
+      </div>
+    </section>
+  </main>
+  <script type="module">
+    import { initializeTheme } from './assets/js/utils.js';
+    initializeTheme();
+  </script>
+</body>
+</html>
+
